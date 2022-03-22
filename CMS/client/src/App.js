@@ -1,11 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/Header'; // Nevigate Home from components Folder
 
 function App() {
   return (
-    <div className="App">
-      Hello World!!!
-    </div>
+    <Header />
   );
 }
 
