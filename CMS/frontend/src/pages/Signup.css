@@ -1,0 +1,11 @@
+.signup__bg--container {
+    background-image: url('../images/cms-signup-bg.png');
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+}
+
+.signup__form {
+    width: 90%;
+    margin: 0 auto;
+}
