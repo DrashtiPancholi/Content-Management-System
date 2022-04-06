@@ -1,0 +1,5 @@
+const mongoos = require('mongoose');
+require('dotenv').config()
+mongoos.Connection('mongodb+srv://${process.env.DB_USER}:${process.env.DB_PW}@cms.ml2zb.mongodb.net/CMS?retryWrites=true&w=majority', ()=> {
+    console.log('connected to db')
+})
