@@ -36,16 +36,26 @@ UserSchema.pre('save', function(next){
 
 })
 
-UserSchema.methods.generateAuthToken = async () => {
+UserSchema.method.toJSON = function() {
     const user = this;
+    const userObject = user.toObject();
+    delete userObject.password;
+    delete userObject.tokens;
+    delete userObject.articles;
+    return userObject;
+}
+
+UserSchema.methods.generateAuthToken = async function() {
+    const user = this;
+    console.log('user is', user)
     const token = jwt.sign({_id: user._id.toString()}, 'appSecret');
-    console.log(token);
-    user.tokens.concat({token});
+    //console.log(token);
+    user.tokens = user.tokens.concat({token});
     await user.Save();
     return;
 }
 
-UserSchema.statics.findByCredentials = async(email, password) => {
+UserSchema.statics.findByCredentials = async function(email, password) {
     const user = await user.findOne({email});
     if(!user) throw new Error('invalid email or password');
     const isMatch = await bcrypt.compare(password, user.password);
