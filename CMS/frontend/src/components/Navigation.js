@@ -1,12 +1,17 @@
 import React from 'react';
 import { Nav, NavDropdown, Navbar, Container } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import logo from "../images/cmslogo.png";
 
 function Navigation() {
     return (
         <Navbar bg="light" expand="lg">
             <Container>
-                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                <LinkContainer to="/">
+                    <Navbar.Brand>
+                        <img src={logo} style={{ width: 60 }} />
+                    </Navbar.Brand>
+                </LinkContainer>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
@@ -16,7 +21,7 @@ function Navigation() {
                         <LinkContainer to="/login">
                             <Nav.Link className="btn brn-primary">Login</Nav.Link>
                         </LinkContainer>
-                        
+
                         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
