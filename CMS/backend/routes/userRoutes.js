@@ -7,7 +7,7 @@ router.post('/', async(req, res)=>{
     const {email, password} = req.body;
 
     try{
-        const user = await user.create({email, passwprd});
+        const user = await User.create({email, passwprd});
         await user.generateAuthToken()
         res.status(201).json(user);
     }
@@ -29,7 +29,7 @@ router.post('/', async(req, res)=>{
 router.post('/login',async(req, res)=>{
     const {email, password} = req.body;
     try{
-        const use = await user.findByCredentials(email, password);
+        const use = await User.findByCredentials(email, password);
         await user.generateAuthToken();
        // console.log(user)
         res.json(user)
