@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema({
         required: [true,  "can't be blanck"]
     },
     tokens: [],
-    articles: []
+    articles: [{type: mongoose.Schema.Types.ObjectId, ref: 'BlogPost'}]
 })
 
 UserSchema.pre('save', function(next){
@@ -52,7 +52,7 @@ UserSchema.methods.generateAuthToken = async function() {
     //console.log(token);
     user.tokens = user.tokens.concat({token});
     await user.Save();
-    return;
+    return token;
 }
 
 UserSchema.statics.findByCredentials = async function(email, password) {
