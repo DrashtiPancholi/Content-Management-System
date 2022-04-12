@@ -56,7 +56,7 @@ UserSchema.methods.generateAuthToken = async function() {
 }
 
 UserSchema.statics.findByCredentials = async function(email, password) {
-    const user = await user.findOne({email});
+    const user = await User.findOne({email});
     if(!user) throw new Error('invalid email or password');
     const isMatch = await bcrypt.compare(password, user.password);
     if(!isMatch) throw new Error('invaild email or password');
@@ -64,5 +64,5 @@ UserSchema.statics.findByCredentials = async function(email, password) {
     return user;
 }
 
-const user = mongoose.model('user', UserSchema);
-module.exports = user;
+const User = mongoose.model('user', UserSchema);
+module.exports = User;
