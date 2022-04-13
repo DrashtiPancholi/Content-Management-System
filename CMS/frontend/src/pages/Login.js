@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Col, Container, Row, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import "./Login.css";
+import axios from 'axios';
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -9,6 +10,10 @@ function Login() {
 
     function handleLogin(e){
         e.preventDefault();
+        axios
+        .post('http://localhost/5000/login', {email, password})
+        .then(({data}) => console.log(data))
+        .catch((err) => console.log(err.message))        
     }
     return (
         <Container>

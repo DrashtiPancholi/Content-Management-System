@@ -1,10 +1,11 @@
 const jwt = require('jsonwebtoken');
 //const User = require('../models/User');
 const User= require('../models/User');
+
 const authuser = require('../middleware/auth');
 
 
-const authuser = async(req, res, next) => {
+const authUser = async(req, res, next) => {
     try{
         const token = req.header('Aithorization').replace('Bearer ', '');
         const decoded = jwt.verify(token, 'appSecret');
@@ -21,4 +22,4 @@ const authuser = async(req, res, next) => {
     }
 }
 
-module.exports = authuser;
+module.exports = authUser;
