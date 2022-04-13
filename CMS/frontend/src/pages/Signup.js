@@ -2,19 +2,24 @@ import React, {useState} from 'react';
 import { Col, Container, Row, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import "./Signup.css";
+import axios from "axios";
 
 function Signup() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    function handleLogin(e){
+    function handleSignup(e){
         e.preventDefault();
+        axios
+        .post('http://localhost:5000/users', { email, password })
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err))
     }
     return (
         <Container>
             <Row>
                 <Col md={7} className="d-flex align-items-center justify-content-center">
-                    <Form className="signup__form" onSubmit={handleLogin}>
+                    <Form className="login__form" onSubmit={handleSignup}>
                     <h1 className="text-center">Create Account</h1>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
