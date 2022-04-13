@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema({
         required: [true,  "can't be blanck"]
     },
     tokens: [],
-    articles: []
+    articles: [{type: mongoose.Schema.Types.ObjectId, ref: 'BlogPost'}]
 })
 
 UserSchema.pre('save', function(next){
@@ -52,11 +52,11 @@ UserSchema.methods.generateAuthToken = async function() {
     //console.log(token);
     user.tokens = user.tokens.concat({token});
     await user.Save();
-    return;
+    return token;
 }
 
 UserSchema.statics.findByCredentials = async function(email, password) {
-    const user = await user.findOne({email});
+    const user = await User.findOne({email});
     if(!user) throw new Error('invalid email or password');
     const isMatch = await bcrypt.compare(password, user.password);
     if(!isMatch) throw new Error('invaild email or password');
@@ -64,5 +64,5 @@ UserSchema.statics.findByCredentials = async function(email, password) {
     return user;
 }
 
-const user = mongoose.model('user', UserSchema);
-module.exports = user;
+const User = mongoose.model('user', UserSchema);
+module.exports = User;
