@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const authuser = require('../middleware/auth');
-const user = require('../models/user');
+const authUser = require('../middleware/auth');
+const user = require('../models/User');
 
 //user creation
 //users/
@@ -42,7 +42,7 @@ router.post('/login',async(req, res)=>{
 
 //logout user
 
-router.delete('/logout', authuser, async(req, res)=>{
+router.delete('/logout', authUser, async(req, res)=>{
     try{
         req.user.tokens = req.user.tokens.filter((tokenObj)=>{
             return tokenObj.token != req.token;
