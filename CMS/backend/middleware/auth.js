@@ -1,8 +1,14 @@
 const jwt = require('jsonwebtoken');
+//<<<<<<< Updated upstream
 //const User = require('../models/User');
-const User= require('../models/User');
+//const User= require('../models/User');
 
 const authuser = require('../middleware/auth');
+//=======
+const User = require('../models/User');
+//const User= require('../models/User');
+//const authUser = require('../middleware/auth');
+//>>>>>>> Stashed changes
 
 
 const authUser = async(req, res, next) => {
